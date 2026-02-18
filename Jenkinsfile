@@ -2,24 +2,25 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                echo 'Checking out code from Git...'
-                git 'https://github.com/<your-username>/<your-repo>.git'
-            }
-        }
 
         stage('Build') {
             steps {
-                echo 'Building the project...'
-                // Example: sh 'mvn clean install' for Java projects
+                echo 'Compiling HelloJenkins...'
+                sh 'javac HelloJenkins.java'
             }
         }
 
-        stage('Test') {
+        stage('Archive') {
             steps {
-                echo 'Running tests...'
-                // Example: sh 'mvn test'
+                echo 'Archiving artifact...'
+                archiveArtifacts 'HelloJenkins.class'
+            }
+        }
+
+        stage('Run') {
+            steps {
+                echo 'Running program...'
+                sh 'java HelloJenkins'
             }
         }
     }
