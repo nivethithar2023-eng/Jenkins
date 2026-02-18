@@ -6,7 +6,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Compiling HelloJenkins...'
-                sh 'javac HelloJenkins.java'
+                bat 'javac HelloJenkins.java'
             }
         }
 
@@ -20,7 +20,7 @@ pipeline {
         stage('Run') {
             steps {
                 echo 'Running program...'
-                sh 'java HelloJenkins'
+                bat 'java HelloJenkins'
             }
         }
     }
